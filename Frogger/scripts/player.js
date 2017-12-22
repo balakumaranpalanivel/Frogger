@@ -10,6 +10,20 @@ var player = (function(){
 
     }
 
+    function moveX(movement){
+        game.camera.position.x += movementRate * movement;
+        game.camera.__dirtyPosition = true;
+        playerBox.position.x += movementRate * movement;
+        playerBox.__dirtyPosition = true;
+    }
+
+    function moveZ(movement){
+        game.camera.position.z += movementRate * movement;
+        game.camera.__dirtyPosition = true;
+        playerBox.position.z += movementRate * movement;
+        playerBox.__dirtyPosition = true;
+    }
+
     function createPlayer(){
         
         playerBoxMaterial = Physijs.createMaterial(
@@ -67,6 +81,8 @@ var player = (function(){
 
     return{
         init: init,
-        createPlayer: createPlayer
+        createPlayer: createPlayer,
+        moveX: moveX,
+        moveZ: moveZ
     }
 })();

@@ -36,6 +36,7 @@ var game = (function() {
     function initScene() {
         resetScene();
         player.createPlayer();
+        gameControls.init();
         render();
     }
 
@@ -55,7 +56,8 @@ var game = (function() {
         scene: scene,
         camera: camera,
         initScene: initScene,
-        controls: controls
+        controls: controls,
+        playerActive: playerActive
     }
 
 })();
