@@ -65,6 +65,10 @@ var game = (function() {
         var delta = clock.getDelta();
         enemy.update(delta);
 
+        if (game.wintext) {
+            game.wintext.rotation.y += 0.01;
+        }
+
         renderer.render(scene, camera);
         requestAnimationFrame(render);
     }

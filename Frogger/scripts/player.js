@@ -22,7 +22,23 @@ var player = (function(){
         game.camera.__dirtyPosition = true;
         playerBox.position.z += movementRate * movement;
         playerBox.__dirtyPosition = true;
+
+        checkIfPlayerAtFinish();
     }
+
+    function checkIfPlayerAtFinish(){
+
+        if(playerBox.position.z<=finishLineZPos){
+
+            if(game.wintext){
+                //dont display win text twice!
+                return;
+            }
+
+            text.createText('You win!', 'winText');
+        }
+    }
+
 
     function createPlayer(){
         
