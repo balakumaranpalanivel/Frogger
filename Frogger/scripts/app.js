@@ -215,6 +215,25 @@ var demo = (function(){
             requestAnimationFrame(render);
         };
 
+        function checkKey(e){
+            var left = 37,
+            up = 38,
+            right = 39,
+            down = 40,
+            increment = 1;
+
+            e = e || window.event;
+            if(e.keyCode == up){
+                camera.position.z -= increment;
+            } else if (e.keyCode == down){
+                camera.position.z += increment;
+            } else if (e.keyCode == left){
+                camera.position.x -= increment;
+            } else if (e.keyCode == right){
+                camera.position.x += increment;
+            }
+        }
+
         //math from http://stackoverflow.com/questions/10341581/javascript-threejs-equation-to-move-an-object-in-a-circle-around-a-central-y
         function moveOrbitingCube(object){
 
@@ -226,6 +245,7 @@ var demo = (function(){
             object.position.z = z * Math.cos(theta) - x * Math.sin(theta);
         }
 
+        window.onkeydown = checkKey;
         window.onload = initScene;
 
         return {
