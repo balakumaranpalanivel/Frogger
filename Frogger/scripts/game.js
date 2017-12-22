@@ -11,6 +11,9 @@ var game = (function() {
         renderer = new THREE.WebGLRenderer(),
         width = window.innerWidth,
         height = window.innerHeight - 10,
+        playerBox,
+        playerActive = true,
+        lives = 3,
         controls;
 
     renderer.setSize(width, height);
@@ -31,7 +34,14 @@ var game = (function() {
     scene.setGravity(new THREE.Vector3(0, -100, 0));
 
     function initScene() {
+        resetScene();
+        player.createPlayer();
         render();
+    }
+
+    function resetScene(){
+        camera.position.set(0, 20, 200);
+        camera.rotation.set(0, 0, 0);
     }
 
     function render() {
