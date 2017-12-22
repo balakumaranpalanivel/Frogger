@@ -11,7 +11,8 @@ var demo = (function(){
         cube2,
         cube3,
         plane,
-        ground;
+        ground,
+        stats;
 
         function initScene(){
                        	
@@ -90,6 +91,14 @@ var demo = (function(){
 
             var axesHelper = new THREE.AxesHelper(300);
             scene.add(axesHelper);  
+            
+            stats = new Stats();
+            stats.setMode(0);
+    
+            stats.domElement.style.position = 'absolute';
+            stats.domElement.style.left = '0px';
+            stats.domElement.style.top = '0px';
+            document.body.appendChild(stats.domElement);
 
             setupGui();
 
@@ -200,6 +209,7 @@ var demo = (function(){
 
         function render() {
             moveOrbitingCube(cube2);            
+            stats.update();
 
             renderer.render(scene, camera); 
             requestAnimationFrame(render);
