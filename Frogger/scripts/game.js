@@ -36,6 +36,7 @@ var game = (function() {
 
     function initScene() {
         resetScene();
+        pointerLock.init(camera, scene);
         sceneSetup.addSceneObjects();
         enemy.init();
         player.createPlayer();
@@ -51,7 +52,7 @@ var game = (function() {
 
     function removeLife(){
         lives -= 1;
-        //document.getElementById("numberOfLives").innerHTML = lives;
+        document.getElementById("numberOfLives").innerHTML = lives;
 
         if(lives == 0){
             alert('game over');
@@ -60,7 +61,7 @@ var game = (function() {
 
     function render() {
         scene.simulate();
-        
+
         var delta = clock.getDelta();
         enemy.update(delta);
 
