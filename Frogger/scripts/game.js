@@ -8,6 +8,7 @@ var game = (function() {
 
     var scene = new Physijs.Scene(),
         camera,
+        clock = new THREE.Clock(),
         renderer = new THREE.WebGLRenderer(),
         width = window.innerWidth,
         height = window.innerHeight - 10,
@@ -36,9 +37,10 @@ var game = (function() {
     function initScene() {
         resetScene();
         sceneSetup.addSceneObjects();
+        enemy.init();
         player.createPlayer();
         gameControls.init();
-        
+
         render();
     }
 
@@ -47,8 +49,20 @@ var game = (function() {
         camera.rotation.set(0, 0, 0);
     }
 
+    function removeLife(){
+        lives -= 1;
+        //document.getElementById("numberOfLives").innerHTML = lives;
+
+        if(lives == 0){
+            alert('game over');
+        }
+    }
+
     function render() {
         scene.simulate();
+        
+        var delta = clock.getDelta();
+        enemy.update(delta);
 
         renderer.render(scene, camera);
         requestAnimationFrame(render);
@@ -58,8 +72,12 @@ var game = (function() {
         scene: scene,
         camera: camera,
         initScene: initScene,
+        resetScene: resetScene,
         controls: controls,
-        playerActive: playerActive
+        playerActive: playerActive,
+        lives: lives,
+        removeLife: removeLife,
+        playerBox: playerBox
     }
 
 })();
