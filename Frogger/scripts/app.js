@@ -12,7 +12,8 @@ var demo = (function(){
         cube3,
         plane,
         ground,
-        stats;
+        stats,
+        controls;
 
         function initScene(){
                        	
@@ -96,11 +97,14 @@ var demo = (function(){
             stats.setMode(0);
     
             stats.domElement.style.position = 'absolute';
-            stats.domElement.style.left = '0px';
-            stats.domElement.style.top = '0px';
+            stats.domElement.style.left = '100px';
+            stats.domElement.style.top = '100px';
             document.body.appendChild(stats.domElement);
 
             setupGui();
+
+            controls = new THREE.OrbitControls(camera);
+            controls.addEventListener('change', render);
 
             requestAnimationFrame(render);   
         
@@ -245,7 +249,7 @@ var demo = (function(){
             object.position.z = z * Math.cos(theta) - x * Math.sin(theta);
         }
 
-        window.onkeydown = checkKey;
+        // window.onkeydown = checkKey;
         window.onload = initScene;
 
         return {
