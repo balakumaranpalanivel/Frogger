@@ -35,8 +35,10 @@ var game = (function() {
 
     function initScene() {
         resetScene();
+        sceneSetup.addSceneObjects();
         player.createPlayer();
         gameControls.init();
+        
         render();
     }
 
